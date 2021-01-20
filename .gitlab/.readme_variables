@@ -1,0 +1,14 @@
+export GITHUB_REPONAME='docker-template-repo'
+export GITHUB_USERNAME='username'
+export GITHUB_REPONAME_HEADER=GITHUB_REPONAME_header.png
+export GITHUB_REPONAME_SCREENSHOT=GITHUB_REPONAME_screenshot.png
+export DOCKERHUB_REPONAME='template-repo'
+export DOCKERHUB_TAG='tag'
+export DOCKERHUB_USERNAME='username'
+export DESCRIPTION='This is an example description for the docker-template-repo. This text should be replaced with an adequate description of the repo this template was clone for. Blablablablablabla you know the drill.'
+export CREATOR_USERNAME='Griefed'
+export CREATOR_REPONAME='template'
+export EXAMPLE_SITE_LINK='https://www.example.com'
+export CONTAINER_PORT='80'
+export CONTAINER_PORT2='443:443'
+export BASE_IMAGE='lsiobase/alpine'
