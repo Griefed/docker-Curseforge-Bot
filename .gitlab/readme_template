@@ -50,9 +50,6 @@ services:
       - TZ=Europe/Berlin
       - PUID=1000  # User ID
       - PGID=1000  # Group ID
-    ports:
-      - 80:$CONTAINER_PORT
-      - $CONTAINER_PORT2
 ```
 
 ## Raspberry Pi
@@ -105,14 +102,10 @@ services:
       - TZ=Europe/Berlin
       - PUID=1000  # User ID
       - PGID=1000  # Group ID
-    ports:
-      - 8080:$CONTAINER_PORT
-      - $CONTAINER_PORT2
 ```
 
 1. Clone the repository: `git clone https://github.com/Griefed/$GITHUB_REPONAME.git ./$GITHUB_REPONAME`
 1. Prepare docker-compose.yml file as seen above
 1. `docker-compose up -d --build $DOCKERHUB_REPONAME`
-1. Visit IP.ADDRESS.OF.HOST:8080
 1. ???
 1. Profit!
