@@ -32,24 +32,24 @@ if [ ! -f /config/bot.conf ]; then
   sed -i \
     "s/CHANGELOG_FORMAT/${CHANGELOG_FORMAT}/g" \
     /config/bot.conf
-  if [ -z $GITHUB_TOKEN ]; then
-    sed -i \
-      "s/GITHUB_TOKEN//g" \
-      /config/bot.conf
-  else
-    sed -i \
-      "s/GITHUB_TOKEN/${GITHUB_TOKEN}/g" \
-      /config/bot.conf
-  fi
-  if [ -z $GITHUB_REPO ]; then
-    sed -i \
-      "s/GITHUB_REPO/CurseforgeBotCache/g" \
-      /config/bot.conf
-  else
-    sed -i \
-      "s/GITHUB_REPO/${GITHUB_REPO}/g" \
-      /config/bot.conf
-  fi
+#  if [ -z $GITHUB_TOKEN ]; then
+#    sed -i \
+#      "s/GITHUB_TOKEN//g" \
+#      /config/bot.conf
+#  else
+#    sed -i \
+#      "s/GITHUB_TOKEN/${GITHUB_TOKEN}/g" \
+#      /config/bot.conf
+#  fi
+#  if [ -z $GITHUB_REPO ]; then
+#    sed -i \
+#      "s/GITHUB_REPO/CurseforgeBotCache/g" \
+#      /config/bot.conf
+#  else
+#    sed -i \
+#      "s/GITHUB_REPO/${GITHUB_REPO}/g" \
+#      /config/bot.conf
+#  fi
 fi
 
 chown -R \

@@ -57,8 +57,6 @@ services:
       - FILE_LINK=
       - DESCRIPTION=
       - CHANGELOG_FORMAT=
-      - GITHUB_TOKEN=
-      - GITHUB_REPO=
 ```
 
 ## Raspberry Pi
