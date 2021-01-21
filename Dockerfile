@@ -5,7 +5,7 @@ LABEL maintainer="Griefed <griefed@griefed.de>"
 RUN \
   echo "**** install dependencies and build tools and stuff ****" && \
   apk add --no-cache \
-    openjdk11-jre-headless
+    openjdk11-jre-headless \
     curl && \
   echo "**** prepare environment ****" && \
     mkdir -p \
