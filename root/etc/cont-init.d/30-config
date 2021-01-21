@@ -6,13 +6,13 @@ if [ ! -f /config/bot.conf ]; then
     /defaults/bot.conf \
     /config/bot.conf
   sed -i \
-    "s/DISCORD_BOT_TOKEN/&{DISCORD_BOT_TOKEN}/g" \
+    "s/DISCORD_BOT_TOKEN/${DISCORD_BOT_TOKEN}/g" \
     /config/bot.conf
   sed -i \
-    "s/DISCORD_CHANNEL_ID/&{DISCORD_CHANNEL_ID}/g" \
+    "s/DISCORD_CHANNEL_ID/${DISCORD_CHANNEL_ID}/g" \
     /config/bot.conf
   sed -i \
-    "s/PROJECT_ID/&{PROJECT_ID}/g" \
+    "s/PROJECT_ID/${PROJECT_ID}/g" \
     /config/bot.conf
   if [ -z $ROLE_ID ]; then
     sed -i \
@@ -20,17 +20,17 @@ if [ ! -f /config/bot.conf ]; then
       /config/bot.conf
   else
     sed -i \
-      "s/ROLE_ID/&{ROLE_ID}/g" \
+      "s/ROLE_ID/${ROLE_ID}/g" \
       /config/bot.conf
   fi
   sed -i \
-    "s/FILE_LINK/&{FILE_LINK}/g" \
+    "s/FILE_LINK/${FILE_LINK}/g" \
     /config/bot.conf
   sed -i \
-    "s/DESCRIPTION/&{DESCRIPTION}/g" \
+    "s/DESCRIPTION/${DESCRIPTION}/g" \
     /config/bot.conf
   sed -i \
-    "s/CHANGELOG_FORMAT/&{CHANGELOG_FORMAT}/g" \
+    "s/CHANGELOG_FORMAT/${CHANGELOG_FORMAT}/g" \
     /config/bot.conf
   if [ -z $GITHUB_TOKEN ]; then
     sed -i \
@@ -38,7 +38,7 @@ if [ ! -f /config/bot.conf ]; then
       /config/bot.conf
   else
     sed -i \
-      "s/GITHUB_TOKEN/&{GITHUB_TOKEN}/g" \
+      "s/GITHUB_TOKEN/${GITHUB_TOKEN}/g" \
       /config/bot.conf
   fi
   if [ -z $GITHUB_REPO ]; then
@@ -47,7 +47,7 @@ if [ ! -f /config/bot.conf ]; then
       /config/bot.conf
   else
     sed -i \
-      "s/GITHUB_REPO/&{GITHUB_REPO}/g" \
+      "s/GITHUB_REPO/${GITHUB_REPO}/g" \
       /config/bot.conf
   fi
 fi
