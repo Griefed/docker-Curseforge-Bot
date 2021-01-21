@@ -1,6 +1,7 @@
 #!/usr/bin/with-contenv bash
 
 if [ ! -f /config/bot.conf ]; then
+  echo "**** setting up curseforgebot configuration ****"
   cp -f \
     /defaults/bot.conf \
     /config/bot.conf
@@ -50,5 +51,10 @@ if [ ! -f /config/bot.conf ]; then
       /config/bot.conf
   fi
 fi
+
+chown -R \
+  abc:abc \
+    /app/curseforgebot \
+    /config
 
 ln -sf /config/bot.conf /app/curseforgebot/bot.conf

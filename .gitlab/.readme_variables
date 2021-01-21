@@ -1,7 +1,7 @@
 export GITHUB_REPONAME='docker-Curseforge-Bot'
 export GITHUB_USERNAME='Griefed'
-export GITHUB_REPONAME_HEADER=docker-Curseforge-Bot_header.png
-export GITHUB_REPONAME_SCREENSHOT=docker-Curseforge-Bot_screenshot.png
+export GITHUB_REPONAME_HEADER='https://i.griefed.de/images/2021/01/21/docker-Curseforge-Bot_header.png'
+export GITHUB_REPONAME_SCREENSHOT='https://i.griefed.de/images/2021/01/21/docker-Curseforge-Bot_screenshot.png'
 export DOCKERHUB_REPONAME='curseforge-bot'
 export DOCKERHUB_TAG='latest'
 export DOCKERHUB_USERNAME='griefed'

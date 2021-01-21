@@ -50,6 +50,15 @@ services:
       - TZ=Europe/Berlin
       - PUID=1000  # User ID
       - PGID=1000  # Group ID
+      - DISCORD_BOT_TOKEN=
+      - DISCORD_CHANNEL_ID=
+      - PROJECT_ID=
+      - ROLE_ID=
+      - FILE_LINK=
+      - DESCRIPTION=
+      - CHANGELOG_FORMAT=
+      - GITHUB_TOKEN=
+      - GITHUB_REPO=
 ```
 
 ## Raspberry Pi
