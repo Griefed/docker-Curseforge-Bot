@@ -75,7 +75,15 @@ data volume | Contains your/the containers important data.
 TZ | Timezone
 PUID | for UserID
 PGID | for GroupID
-ports | The port where the service will be available at.
+DISCORD_BOT_TOKEN | Your discord bot-token
+DISCORD_CHANNEL_ID | The ID of the channel you want the bot to post in
+PROJECT_ID | The ID of your Curseforge project
+ROLE_ID | (Optional) The ID of the discord role mentioned when the bot makes a post
+FILE_LINK | `direct`-link to file or `curse`forge-link on project page or `nolink`. 
+DESCRIPTION | This sets the text that appears as the message description in the update notification
+CHANGELOG_FORMAT | `yml` or `md` or `css`. Only choose one syntax. Can be very usefull if project owner/author uses discord MarkDown formatting in their changelog.
+
+More information at [the Curseforge-Bot wiki](https://github.com/ErdbeerbaerLP/Curseforge-Bot/wiki).
 
 ## User / Group Identifiers
 
@@ -99,16 +107,22 @@ docker-compose.yml:
 ```docker-compose.yml
 version: '3.6'
 services:
-  curseforge-bot:
     container_name: curseforge-bot
-    build: ./docker-Curseforge-Bot/
+    image: griefed/curseforge-bot:arm
     restart: unless-stopped
     volumes:
-      - ./path/to/config/files:/config
+      - ./path/to/config:/config
     environment:
       - TZ=Europe/Berlin
       - PUID=1000  # User ID
       - PGID=1000  # Group ID
+      - DISCORD_BOT_TOKEN=
+      - DISCORD_CHANNEL_ID=
+      - PROJECT_ID=
+      - ROLE_ID=
+      - FILE_LINK=
+      - DESCRIPTION=
+      - CHANGELOG_FORMAT=
 ```
 
 1. Clone the repository: `git clone https://github.com/Griefed/docker-Curseforge-Bot.git ./docker-Curseforge-Bot`
