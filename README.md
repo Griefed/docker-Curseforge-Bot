@@ -84,8 +84,24 @@ ROLE_ID | (Optional) The ID of the discord role mentioned when the bot makes a p
 FILE_LINK | `direct`-link to file or `curse`forge-link on project page or `nolink`. 
 DESCRIPTION | This sets the text that appears as the message description in the update notification
 CHANGELOG_FORMAT | `yml` or `md` or `css`. Only choose one syntax. Can be very usefull if project owner/author uses discord MarkDown formatting in their changelog.
+GITHUB_TOKEN | (Optional) Required if you want the cache of the bot to be synched to a github repository. Create an github access token with full "Repo" access (https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
+GITHUB_REPO | (Optional) If using GITHUB_TOKEN this will be the name of the repo where the bot will store the cache
 
 More information at [the Curseforge-Bot wiki](https://github.com/ErdbeerbaerLP/Curseforge-Bot/wiki).
+
+## Adding more projects to track
+
+If you have multiple projects in Curseforge which you want to track with this bot, you need to manually edit the bot.conf file which is created after container creation. Here's an example for multiple project IDs and how it's formatted:
+```
+ids = [
+    # Project ID
+    "430517",
+    "438915",
+    "378473",
+    "378719"
+]
+```
+Every new project ID need to be in "" followed by a `,` if an additional ID follows. Last ID must not have a `,` at the end.
 
 ## User / Group Identifiers
 
