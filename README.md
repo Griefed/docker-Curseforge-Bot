@@ -57,6 +57,8 @@ services:
       - FILE_LINK=
       - DESCRIPTION=
       - CHANGELOG_FORMAT=
+      - GITHUB_TOKEN=
+      - GITHUB_REPO=
 ```
 
 ## Raspberry Pi
@@ -123,6 +125,8 @@ services:
       - FILE_LINK=
       - DESCRIPTION=
       - CHANGELOG_FORMAT=
+      - GITHUB_TOKEN=
+      - GITHUB_REPO=
 ```
 
 1. Clone the repository: `git clone https://github.com/Griefed/docker-Curseforge-Bot.git ./docker-Curseforge-Bot`

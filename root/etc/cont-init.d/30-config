@@ -14,7 +14,7 @@ if [ ! -f /config/bot.conf ]; then
   sed -i \
     "s/PROJECT_ID/${PROJECT_ID}/g" \
     /config/bot.conf
-  if [ -z $ROLE_ID ]; then
+  if [ -z "$ROLE_ID" ]; then
     sed -i \
       "s/ROLE_ID/000000000/g" \
       /config/bot.conf
@@ -32,24 +32,24 @@ if [ ! -f /config/bot.conf ]; then
   sed -i \
     "s/CHANGELOG_FORMAT/${CHANGELOG_FORMAT}/g" \
     /config/bot.conf
-#  if [ -z $GITHUB_TOKEN ]; then
-#    sed -i \
-#      "s/GITHUB_TOKEN//g" \
-#      /config/bot.conf
-#  else
-#    sed -i \
-#      "s/GITHUB_TOKEN/${GITHUB_TOKEN}/g" \
-#      /config/bot.conf
-#  fi
-#  if [ -z $GITHUB_REPO ]; then
-#    sed -i \
-#      "s/GITHUB_REPO/CurseforgeBotCache/g" \
-#      /config/bot.conf
-#  else
-#    sed -i \
-#      "s/GITHUB_REPO/${GITHUB_REPO}/g" \
-#      /config/bot.conf
-#  fi
+  if [ -z "$GITHUB_TOKEN" ]; then
+    sed -i \
+      "s/GITHUB_TOKEN//g" \
+      /config/bot.conf
+  else
+    sed -i \
+      "s/GITHUB_TOKEN/${GITHUB_TOKEN}/g" \
+      /config/bot.conf
+  fi
+  if [ -z "$GITHUB_REPO" ]; then
+    sed -i \
+      "s/GITHUB_REPO/CurseforgeBotCache/g" \
+      /config/bot.conf
+  else
+    sed -i \
+      "s/GITHUB_REPO/${GITHUB_REPO}/g" \
+      /config/bot.conf
+  fi
 fi
 
 chown -R \
@@ -57,4 +57,6 @@ chown -R \
     /app/curseforgebot \
     /config
 
+echo "**** creating bot.conf symlink ****"
 ln -sf /config/bot.conf /app/curseforgebot/bot.conf
+echo "**** to reset the configuration, delete bot.conf in /config/bot.conf and restart the container ****"
