@@ -17,7 +17,7 @@
 [![GitHub Repo stars](https://img.shields.io/github/stars/Griefed/docker-Curseforge-Bot?label=GitHub%20Stars&style=for-the-badge&logo=Github&labelColor=325358&color=c0ffee)](https://github.com/Griefed/docker-Curseforge-Bot)
 [![GitHub forks](https://img.shields.io/github/forks/Griefed/docker-Curseforge-Bot?label=GitHub%20Forks&style=for-the-badge&logo=Github&labelColor=325358&color=c0ffee)](https://github.com/Griefed/docker-Curseforge-Bot)
 
-A discord bot, which informs users about new files of specific mods
+A discord bot, which informs users about new files of specific mods or Curseforge projects in general.
 
 [![Curseforge-Bot](https://i.griefed.de/images/2021/01/21/docker-Curseforge-Bot_screenshot.png)](https://github.com/ErdbeerbaerLP/Curseforge-Bot)
 [![Curseforge-Bot](https://i.griefed.de/images/2021/01/22/docker-Curseforge-Bot_screenshot2.png)](https://github.com/ErdbeerbaerLP/Curseforge-Bot)
