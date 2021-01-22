@@ -7,7 +7,7 @@ ARG BOT_VERSION=1.2.3
 RUN \
   echo "**** install dependencies and build tools and stuff ****" && \
   apk add --no-cache \
-    openjdk11-jre-headless \
+    openjdk8-jre \
     curl && \
   echo "**** prepare environment ****" && \
     mkdir -p \
