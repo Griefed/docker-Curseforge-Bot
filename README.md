@@ -20,6 +20,7 @@
 A discord bot, which informs users about new files of specific mods
 
 [![Curseforge-Bot](https://i.griefed.de/images/2021/01/21/docker-Curseforge-Bot_screenshot.png)](https://github.com/ErdbeerbaerLP/Curseforge-Bot)
+[![Curseforge-Bot](https://i.griefed.de/images/2021/01/22/docker-Curseforge-Bot_screenshot2.png)](https://github.com/ErdbeerbaerLP/Curseforge-Bot)
 
 ---
 
@@ -37,28 +38,52 @@ Tags | Description
 
 ## Pre-built images
 
+using docker-compose:
+
 ```docker-compose.yml
-version: '3.6'
+version: "2"
 services:
   curseforge-bot:
+    image: griefed/curseforge-bot:latest
     container_name: curseforge-bot
-    image: griefed/curseforge-bot
     restart: unless-stopped
-    volumes:
-      - ./path/to/config:/config
     environment:
-      - TZ=Europe/Berlin
-      - PUID=1000  # User ID
-      - PGID=1000  # Group ID
-      - DISCORD_BOT_TOKEN=
-      - DISCORD_CHANNEL_ID=
-      - PROJECT_ID=
-      - ROLE_ID=
-      - FILE_LINK=
-      - DESCRIPTION=
-      - CHANGELOG_FORMAT=
-      - GITHUB_TOKEN=
-      - GITHUB_REPO=
+      - TZ=Europe/Berlin # Timezone
+      - ROLE_ID=000000000 # (Optional) The ID of the discord role mentioned when the bot makes a post
+      - PUID=1000 # User ID
+      - PROJECT_ID=430517 # The ID of your Curseforge project
+      - PGID=1000 # Group ID
+      - GITHUB_TOKEN # (Optional) Required if you want the cache of the bot to be synched to a github repository. Create an github access token with full 
+      - GITHUB_REPO=CurseforgeBotCache # (Optional) If using GITHUB_TOKEN this will be the name of the repo where the bot will store the cache
+      - FILE_LINK=curse # direct-link to file or curseforge-link on project page or nolink.
+      - DISCORD_CHANNEL_ID=000000000 # The ID of the channel you want the bot to post in
+      - DISCORD_BOT_TOKEN=InsertHere # Your discord bot-token
+      - DESCRIPTION=New File(s) Detected For CurseForge Project(s) # This sets the text that appears as the message description in the update notification
+      - CHANGELOG_FORMAT=md # yml or md or css. Only choose one syntax. Can be very usefull if project owner/author uses discord MarkDown formatting in their changelog.
+    volumes:
+      - /host/path/to/config:/config # Where the bot-conf will be stored
+```
+
+Using CLI:
+
+```bash
+docker create \
+  --name=curseforge-bot \
+  -e TZ=Europe/Berlin `# Timezone` \
+  -e ROLE_ID=000000000 `# (Optional) The ID of the discord role mentioned when the bot makes a post` \
+  -e PUID=1000 `# User ID` \
+  -e PROJECT_ID=430517 `# The ID of your Curseforge project` \
+  -e PGID=1000 `# Group ID` \
+  -e GITHUB_TOKEN `# (Optional) Required if you want the cache of the bot to be synched to a github repository. Create an github access token with full ` \
+  -e GITHUB_REPO=CurseforgeBotCache `# (Optional) If using GITHUB_TOKEN this will be the name of the repo where the bot will store the cache` \
+  -e FILE_LINK=curse `# direct-link to file or curseforge-link on project page or nolink.` \
+  -e DISCORD_CHANNEL_ID=000000000 `# The ID of the channel you want the bot to post in` \
+  -e DISCORD_BOT_TOKEN=InsertHere `# Your discord bot-token` \
+  -e DESCRIPTION=New File(s) Detected For CurseForge Project(s) `# This sets the text that appears as the message description in the update notification` \
+  -e CHANGELOG_FORMAT=md `# yml or md or css. Only choose one syntax. Can be very usefull if project owner/author uses discord MarkDown formatting in their changelog.` \
+  -v /host/path/to/config:/config `# Where the bot-conf will be stored` \
+  --restart unless-stopped \
+  griefed/curseforge-bot:latest
 ```
 
 ## Raspberry Pi
