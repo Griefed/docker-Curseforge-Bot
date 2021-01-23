@@ -34,7 +34,7 @@ RUN \
   mkdir -p \
     /app/curseforgebot
 
-COPY --from=builder /build/libs/CurseForge2Discord-master.jar /app/curseforgebot/CurseForge2Discord.jar
+COPY --from=builder /tmp/curseforgebot/build/libs/CurseForge2Discord-master.jar /app/curseforgebot/CurseForge2Discord.jar
 
 RUN \
   echo "**** Cleanup ****" && \
