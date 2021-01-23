@@ -150,6 +150,7 @@ docker-compose.yml:
 ```docker-compose.yml
 version: '3.6'
 services:
+  curseforge-bot:
     container_name: curseforge-bot
     image: griefed/curseforge-bot:arm
     restart: unless-stopped
