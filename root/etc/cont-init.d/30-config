@@ -6,10 +6,10 @@ if [ ! -f /config/bot.conf ]; then
     /defaults/bot.conf \
     /config/bot.conf
   sed -i \
-    "s/DISCORD_BOT_TOKEN/${DISCORD_BOT_TOKEN}/g" \
+    "s/DISCORD_CHANNEL_ID/${DISCORD_CHANNEL_ID}/g" \
     /config/bot.conf
   sed -i \
-    "s/DISCORD_CHANNEL_ID/${DISCORD_CHANNEL_ID}/g" \
+    "s/WEBHOOK_TOKEN/${WEBHOOK_TOKEN}/g" \
     /config/bot.conf
   sed -i \
     "s/PROJECT_ID/${PROJECT_ID}/g" \
@@ -32,24 +32,6 @@ if [ ! -f /config/bot.conf ]; then
   sed -i \
     "s/CHANGELOG_FORMAT/${CHANGELOG_FORMAT}/g" \
     /config/bot.conf
-  if [ -z "$GITHUB_TOKEN" ]; then
-    sed -i \
-      "s/GITHUB_TOKEN//g" \
-      /config/bot.conf
-  else
-    sed -i \
-      "s/GITHUB_TOKEN/${GITHUB_TOKEN}/g" \
-      /config/bot.conf
-  fi
-  if [ -z "$GITHUB_REPO" ]; then
-    sed -i \
-      "s/GITHUB_REPO/CurseforgeBotCache/g" \
-      /config/bot.conf
-  else
-    sed -i \
-      "s/GITHUB_REPO/${GITHUB_REPO}/g" \
-      /config/bot.conf
-  fi
 fi
 
 chown -R \
