@@ -2,8 +2,4 @@
 
 cd /app/curseforgebot
 
-if [ -n "$GITHUB_TOKEN" ]; then
-  exec s6-setuidgid abc java -jar curseforgebot.jar -github
-else
-  exec s6-setuidgid abc java -jar curseforgebot.jar
-fi
+exec s6-setuidgid abc /usr/lib/jvm/jdk-15/java -jar CurseForge2Discord.jar
