@@ -26,11 +26,6 @@ RUN \
   tar -xf \
     /tmp/openjdk-15.tar.gz -C \
        /usr/lib/jvm/ && \
-  echo "JAVA_HOME=/usr/lib/jvm/jdk-15" >> /etc/profile && \
-  echo "PATH=$PATH:$HOME/bin:$JAVA_HOME/bin" >> /etc/profile && \
-  echo "export JAVA_HOME" >> /etc/profile && \
-  echo "export JRE_HOME" >> /etc/profile && \
-  echo "export PATH" >> /etc/profile && \
   mkdir -p \
     /app/curseforgebot
 
