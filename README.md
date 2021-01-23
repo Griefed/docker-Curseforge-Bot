@@ -35,8 +35,9 @@ Tags | Description
 -----|------------
 `latest` | Using the `latest` tag will pull the latest image for amd64/x86_64 architecture.
 `arm` | Using the `arm`tag will pull the latest image for arm architecture. Use this if you intend on running the container on a Raspberry Pi 3B, for example.
+`ijo42-latest` | Using the `ijo42-latest` tag will pull the latest image for amd64/x86_64 architecture based on [ijo42's](https://github.com/ijo42) fork [CurseForge2Discord](https://github.com/ijo42/CurseForge2Discord)
 
-## Pre-built images
+## Pre-built images `latest`
 
 using docker-compose:
 
@@ -86,6 +87,52 @@ docker create \
   griefed/curseforge-bot:latest
 ```
 
+## Pre-built images `ijo42-latest`
+
+using docker-compose:
+
+```docker-compose.yml
+version: "2"
+services:
+  curseforge-bot:
+    image: griefed/curseforge-bot:latest
+    container_name: curseforge-bot
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Berlin # Timezone
+      - ROLE_ID=000000000 # (Optional) The ID of the discord role mentioned when the bot makes a post
+      - PUID=1000 # User ID
+      - PROJECT_ID=430517 # The ID of your Curseforge project
+      - PGID=1000 # Group ID
+      - FILE_LINK=curse # direct-link to file or curseforge-link on project page or nolink.
+      - DISCORD_CHANNEL_ID=000000000 # The ID of the channel you want the bot to post in
+      - WEBHOOK_TOKEN=InsertHere # Your discord-server webhook
+      - DESCRIPTION=New File(s) Detected For CurseForge Project(s) # This sets the text that appears as the message description in the update notification
+      - CHANGELOG_FORMAT=md # yml or md or css. Only choose one syntax. Can be very usefull if project owner/author uses discord MarkDown formatting in their changelog.
+    volumes:
+      - /host/path/to/config:/config # Where the bot-conf will be stored
+```
+
+Using CLI:
+
+```bash
+docker create \
+  --name=curseforge-bot \
+  -e TZ=Europe/Berlin `# Timezone` \
+  -e ROLE_ID=000000000 `# (Optional) The ID of the discord role mentioned when the bot makes a post` \
+  -e PUID=1000 `# User ID` \
+  -e PROJECT_ID=430517 `# The ID of your Curseforge project` \
+  -e PGID=1000 `# Group ID` \
+  -e FILE_LINK=curse `# direct-link to file or curseforge-link on project page or nolink.` \
+  -e DISCORD_CHANNEL_ID=000000000 `# The ID of the channel you want the bot to post in` \
+  -e WEBHOOK_TOKEN=InsertHere `# Your discord-server webhook` \
+  -e DESCRIPTION=New File(s) Detected For CurseForge Project(s) `# This sets the text that appears as the message description in the update notification` \
+  -e CHANGELOG_FORMAT=md `# yml or md or css. Only choose one syntax. Can be very usefull if project owner/author uses discord MarkDown formatting in their changelog.` \
+  -v /host/path/to/config:/config `# Where the bot-conf will be stored` \
+  --restart unless-stopped \
+  griefed/curseforge-bot:latest
+```
+
 ## Raspberry Pi
 
 To run this container on a Raspberry Pi, use the `arm`-tag. I've tested it on a Raspberry Pi 3B.
@@ -111,15 +158,15 @@ DESCRIPTION | This sets the text that appears as the message description in the 
 CHANGELOG_FORMAT | `yml` or `md` or `css`. Only choose one syntax. Can be very usefull if project owner/author uses discord MarkDown formatting in their changelog.
 GITHUB_TOKEN | (Optional) Required if you want the cache of the bot to be synched to a github repository. Create an github access token with full "Repo" access (https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
 GITHUB_REPO | (Optional) If using GITHUB_TOKEN this will be the name of the repo where the bot will store the cache
+WEBHOOK_TOKEN | Your discord-server webhook
 
 More information at [the Curseforge-Bot wiki](https://github.com/ErdbeerbaerLP/Curseforge-Bot/wiki).
 
-## Adding more projects to track
+## Adding more projects to track for `latest`and `arm`
 
 If you have multiple projects in Curseforge which you want to track with this bot, you need to manually edit the bot.conf file which is created after container creation. Here's an example for multiple project IDs and how it's formatted:
 ```
 ids = [
-    # Project ID
     "430517",
     "438915",
     "378473",
@@ -127,6 +174,17 @@ ids = [
 ]
 ```
 Every new project ID need to be in "" followed by a `,` if an additional ID follows. Last ID must not have a `,` at the end.
+
+## Adding more projects to track for `ijo42-latest`
+
+If you have multiple projects in Curseforge which you want to track with this bot, you need to manually edit the bot.conf file which is created after container creation. Here's an example for multiple project IDs and how it's formatted:
+```
+ids = [
+    "430517;;DISCORD_CHANNEL_ID;;WEBHOOK_TOKEN",
+    "239197;;DISCORD_CHANNEL_ID;;WEBHOOK_TOKEN",
+    "243121;;DISCORD_CHANNEL_ID;;WEBHOOK_TOKEN"
+]
+```
 
 ## User / Group Identifiers
 
