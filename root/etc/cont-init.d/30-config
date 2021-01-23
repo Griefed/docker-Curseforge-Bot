@@ -57,6 +57,4 @@ chown -R \
     /app/curseforgebot \
     /config
 
-echo "**** creating bot.conf symlink ****"
-ln -sf /config/bot.conf /app/curseforgebot/bot.conf
 echo "**** to reset the configuration, delete bot.conf in /config/bot.conf and restart the container ****"

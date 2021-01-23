@@ -1,9 +1,9 @@
 #!/usr/bin/with-contenv bash
 
-cd /app/curseforgebot
+cd /config
 
 if [ -n "$GITHUB_TOKEN" ]; then
-  exec s6-setuidgid abc java -jar curseforgebot.jar -github
+  exec s6-setuidgid abc java -jar /app/curseforgebot/curseforgebot.jar -github
 else
-  exec s6-setuidgid abc java -jar curseforgebot.jar
+  exec s6-setuidgid abc java -jar /app/curseforgebot/curseforgebot.jar
 fi
