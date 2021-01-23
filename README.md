@@ -17,14 +17,14 @@
 [![GitHub Repo stars](https://img.shields.io/github/stars/Griefed/docker-Curseforge-Bot?label=GitHub%20Stars&style=for-the-badge&logo=Github&labelColor=325358&color=c0ffee)](https://github.com/Griefed/docker-Curseforge-Bot)
 [![GitHub forks](https://img.shields.io/github/forks/Griefed/docker-Curseforge-Bot?label=GitHub%20Forks&style=for-the-badge&logo=Github&labelColor=325358&color=c0ffee)](https://github.com/Griefed/docker-Curseforge-Bot)
 
-A discord bot, which informs users about new files of specific mods or Curseforge projects in general.
+A discord bot, which informs users about new files of specific mods or Curseforge projects in general. Based on [ijo42's](https://github.com/ijo42) fork [CurseForge2Discord](https://github.com/ijo42/CurseForge2Discord). 
 
 [![Curseforge-Bot](https://i.griefed.de/images/2021/01/21/docker-Curseforge-Bot_screenshot.png)](https://github.com/ErdbeerbaerLP/Curseforge-Bot)
 [![Curseforge-Bot](https://i.griefed.de/images/2021/01/22/docker-Curseforge-Bot_screenshot2.png)](https://github.com/ErdbeerbaerLP/Curseforge-Bot)
 
 ---
 
-Creates a Container which runs [ErdbeerbaerLP's](https://github.com/ErdbeerbaerLP) [Curseforge-Bot](https://github.com/ErdbeerbaerLP/Curseforge-Bot), with [lsiobase/alpine](https://hub.docker.com/r/lsiobase/alpine) as the base image, as seen on https://github.com/ErdbeerbaerLP/Curseforge-Bot.
+Creates a Container which runs [ijo42's](https://github.com/ijo42) [CurseForge2Discord](https://github.com/ijo42/CurseForge2Discord), with [lsiobase/alpine](https://hub.docker.com/r/lsiobase/alpine) as the base image, as seen on https://github.com/ijo42/CurseForge2Discord.
 
 The [lsiobase/alpine](https://hub.docker.com/r/lsiobase/alpine) image is a custom base image built with [Alpine linux](https://alpinelinux.org/) and [S6 overlay](https://github.com/just-containers/s6-overlay).
 Using this image allows us to use the same user/group ids in the container as on the host, making file transfers much easier
@@ -34,7 +34,6 @@ Using this image allows us to use the same user/group ids in the container as on
 Tags | Description
 -----|------------
 `latest` | Using the `latest` tag will pull the latest image for amd64/x86_64 architecture.
-`arm` | Using the `arm`tag will pull the latest image for arm architecture. Use this if you intend on running the container on a Raspberry Pi 3B, for example.
 
 ## Pre-built images
 
@@ -53,11 +52,9 @@ services:
       - PUID=1000 # User ID
       - PROJECT_ID=430517 # The ID of your Curseforge project
       - PGID=1000 # Group ID
-      - GITHUB_TOKEN # (Optional) Required if you want the cache of the bot to be synched to a github repository. Create an github access token with full 
-      - GITHUB_REPO=CurseforgeBotCache # (Optional) If using GITHUB_TOKEN this will be the name of the repo where the bot will store the cache
       - FILE_LINK=curse # direct-link to file or curseforge-link on project page or nolink.
       - DISCORD_CHANNEL_ID=000000000 # The ID of the channel you want the bot to post in
-      - DISCORD_BOT_TOKEN=InsertHere # Your discord bot-token
+      - WEBHOOK_TOKEN=InsertHere # Your discord-server webhook
       - DESCRIPTION=New File(s) Detected For CurseForge Project(s) # This sets the text that appears as the message description in the update notification
       - CHANGELOG_FORMAT=md # yml or md or css. Only choose one syntax. Can be very usefull if project owner/author uses discord MarkDown formatting in their changelog.
     volumes:
@@ -74,11 +71,9 @@ docker create \
   -e PUID=1000 `# User ID` \
   -e PROJECT_ID=430517 `# The ID of your Curseforge project` \
   -e PGID=1000 `# Group ID` \
-  -e GITHUB_TOKEN `# (Optional) Required if you want the cache of the bot to be synched to a github repository. Create an github access token with full ` \
-  -e GITHUB_REPO=CurseforgeBotCache `# (Optional) If using GITHUB_TOKEN this will be the name of the repo where the bot will store the cache` \
   -e FILE_LINK=curse `# direct-link to file or curseforge-link on project page or nolink.` \
   -e DISCORD_CHANNEL_ID=000000000 `# The ID of the channel you want the bot to post in` \
-  -e DISCORD_BOT_TOKEN=InsertHere `# Your discord bot-token` \
+  -e WEBHOOK_TOKEN=InsertHere `# Your discord-server webhook` \
   -e DESCRIPTION=New File(s) Detected For CurseForge Project(s) `# This sets the text that appears as the message description in the update notification` \
   -e CHANGELOG_FORMAT=md `# yml or md or css. Only choose one syntax. Can be very usefull if project owner/author uses discord MarkDown formatting in their changelog.` \
   -v /host/path/to/config:/config `# Where the bot-conf will be stored` \
@@ -88,9 +83,7 @@ docker create \
 
 ## Raspberry Pi
 
-To run this container on a Raspberry Pi, use the `arm`-tag. I've tested it on a Raspberry Pi 3B.
-
-`griefed/curseforge-bot:arm`
+Unfortunately, due to OpenJDK-15 not having an image supporting armv7, there is no arm-image for this container.
 
 # Configuration
 
@@ -102,15 +95,13 @@ data volume | Contains your/the containers important data.
 TZ | Timezone
 PUID | for UserID
 PGID | for GroupID
-DISCORD_BOT_TOKEN | Your discord bot-token
+WEBHOOK_TOKEN | Your discord-server webhook
 DISCORD_CHANNEL_ID | The ID of the channel you want the bot to post in
 PROJECT_ID | The ID of your Curseforge project
 ROLE_ID | (Optional) The ID of the discord role mentioned when the bot makes a post
 FILE_LINK | `direct`-link to file or `curse`forge-link on project page or `nolink`. 
 DESCRIPTION | This sets the text that appears as the message description in the update notification
 CHANGELOG_FORMAT | `yml` or `md` or `css`. Only choose one syntax. Can be very usefull if project owner/author uses discord MarkDown formatting in their changelog.
-GITHUB_TOKEN | (Optional) Required if you want the cache of the bot to be synched to a github repository. Create an github access token with full "Repo" access (https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
-GITHUB_REPO | (Optional) If using GITHUB_TOKEN this will be the name of the repo where the bot will store the cache
 
 More information at [the Curseforge-Bot wiki](https://github.com/ErdbeerbaerLP/Curseforge-Bot/wiki).
 
@@ -120,10 +111,10 @@ If you have multiple projects in Curseforge which you want to track with this bo
 ```
 ids = [
     # Project ID
-    "430517",
-    "438915",
-    "378473",
-    "378719"
+    "Project ID;;Channel ID;;Webhook",
+    "Project ID2;;Channel ID2;;Webhook",
+    "Project ID3;;Channel ID;;Webhook",
+    "Project ID4;;Channel ID;;Webhook"
 ]
 ```
 Every new project ID need to be in "" followed by a `,` if an additional ID follows. Last ID must not have a `,` at the end.
@@ -143,7 +134,7 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 # Building the image yourself
 
-Use the [Dockerfile](https://github.com/Griefed/docker-Curseforge-Bot/Dockerfile) to build the image yourself, in case you want to make any changes to it
+Use the [Dockerfile](https://github.com/Griefed/docker-Curseforge-Bot/blob/ijo42/Dockerfile) to build the image yourself, in case you want to make any changes to it
 
 docker-compose.yml:
 
@@ -159,15 +150,13 @@ services:
       - TZ=Europe/Berlin
       - PUID=1000  # User ID
       - PGID=1000  # Group ID
-      - DISCORD_BOT_TOKEN=
+      - WEBHOOK_TOKEN=
       - DISCORD_CHANNEL_ID=
       - PROJECT_ID=
       - ROLE_ID=
       - FILE_LINK=
       - DESCRIPTION=
       - CHANGELOG_FORMAT=
-      - GITHUB_TOKEN=
-      - GITHUB_REPO=
 ```
 
 1. Clone the repository: `git clone https://github.com/Griefed/docker-Curseforge-Bot.git ./docker-Curseforge-Bot`
