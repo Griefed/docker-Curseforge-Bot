@@ -105,7 +105,7 @@ services:
       - PROJECT_ID=430517 # The ID of your Curseforge project
       - PGID=1000 # Group ID
       - FILE_LINK=curse # direct-link to file or curseforge-link on project page or nolink.
-      - DISCORD_CHANNEL_ID=000000000 # The ID of the channel you want the bot to post in
+      - DISCORD_CHANNEL_ID=000000000 # The ID of the channel you want the bot to post in. Must be the Channel ID from your Webhook URL.
       - WEBHOOK_TOKEN=InsertHere # Your discord-server webhook
       - DESCRIPTION=New File(s) Detected For CurseForge Project(s) # This sets the text that appears as the message description in the update notification
       - CHANGELOG_FORMAT=md # yml or md or css. Only choose one syntax. Can be very usefull if project owner/author uses discord MarkDown formatting in their changelog.
@@ -124,7 +124,7 @@ docker create \
   -e PROJECT_ID=430517 `# The ID of your Curseforge project` \
   -e PGID=1000 `# Group ID` \
   -e FILE_LINK=curse `# direct-link to file or curseforge-link on project page or nolink.` \
-  -e DISCORD_CHANNEL_ID=000000000 `# The ID of the channel you want the bot to post in` \
+  -e DISCORD_CHANNEL_ID=000000000 `# The ID of the channel you want the bot to post in. Must be the Channel ID from your webhook URL.` \
   -e WEBHOOK_TOKEN=InsertHere `# Your discord-server webhook` \
   -e DESCRIPTION=New File(s) Detected For CurseForge Project(s) `# This sets the text that appears as the message description in the update notification` \
   -e CHANGELOG_FORMAT=md `# yml or md or css. Only choose one syntax. Can be very usefull if project owner/author uses discord MarkDown formatting in their changelog.` \
@@ -150,7 +150,7 @@ TZ | Timezone
 PUID | for UserID
 PGID | for GroupID
 DISCORD_BOT_TOKEN | Your discord bot-token
-DISCORD_CHANNEL_ID | The ID of the channel you want the bot to post in
+DISCORD_CHANNEL_ID | The ID of the channel you want the bot to post in. When using `ijo42-latest` this Channel ID must the be one from your webhook URL.
 PROJECT_ID | The ID of your Curseforge project
 ROLE_ID | (Optional) The ID of the discord role mentioned when the bot makes a post
 FILE_LINK | `direct`-link to file or `curse`forge-link on project page or `nolink`.
