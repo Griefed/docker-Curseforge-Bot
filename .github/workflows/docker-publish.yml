@@ -42,7 +42,7 @@ jobs:
           platforms: linux/amd64,linux/arm,linux/arm64/v8
           push: true
           tags: |
-            DOCKERHUB_USERNAME/DOCKERHUB_REPO:latest
-            DOCKERHUB_USERNAME/DOCKERHUB_REPO:1.0.0
+            $DOCKERHUB_USERNAME/$DOCKERHUB_REPO:latest
+            $DOCKERHUB_USERNAME/$DOCKERHUB_REPO:1.0.0
             ghcr.io/user/app:latest
             ghcr.io/user/app:1.0.0
