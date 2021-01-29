@@ -33,9 +33,12 @@ Using this image allows us to use the same user/group ids in the container as on
 
 Tags | Description
 -----|------------
-`latest` | Using the `latest` tag will pull the latest image for amd64/x86_64 architecture.
-`arm` | Using the `arm`tag will pull the latest image for arm architecture. Use this if you intend on running the container on a Raspberry Pi 3B, for example.
-`ijo42-latest` | Using the `ijo42-latest` tag will pull the latest image for amd64/x86_64 architecture based on [ijo42's](https://github.com/ijo42) fork [CurseForge2Discord](https://github.com/ijo42/CurseForge2Discord)
+`latest` | Using the `latest` tag will pull the latest image for linux/amd64,linux/arm/v7,linux/arm64.
+`develop` | The latest image of, if existent, the in-dev version of this container. Use at your own risk!
+`ijo42-latest` | Using the `ijo42-latest` tag will pull the latest image based on [ijo42's](https://github.com/ijo42) fork [CurseForge2Discord](https://github.com/ijo42/CurseForge2Discord)
+
+Using GitHub Workflows, images for this container are multi-arch. Simply pulling `:latest` should retrieve the correct image for your architecture.
+Images are available for linux/amd64,linux/arm/v7,linux/arm64.
 
 ## Pre-built images `latest`
 
@@ -132,12 +135,6 @@ docker create \
   --restart unless-stopped \
   griefed/curseforge-bot:latest
 ```
-
-## Raspberry Pi
-
-To run this container on a Raspberry Pi, use the `arm`-tag. I've tested it on a Raspberry Pi 3B.
-
-`griefed/curseforge-bot:arm`
 
 # Configuration
 
