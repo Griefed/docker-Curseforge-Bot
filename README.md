@@ -36,7 +36,6 @@ Tags | Description
 -----|------------
 `latest` | Using the `latest` tag will pull the latest image for linux/amd64,linux/arm/v7,linux/arm64.
 `develop` | The latest image of, if existent, the in-dev version of this container. Use at your own risk!
-`ijo42-latest` | Using the `ijo42-latest` tag will pull the latest image based on [ijo42's](https://github.com/ijo42) fork [CurseForge2Discord](https://github.com/ijo42/CurseForge2Discord)
 
 Using GitHub Workflows, images for this container are multi-arch. Simply pulling `:latest` should retrieve the correct image for your architecture.
 Images are available for linux/amd64,linux/arm/v7,linux/arm64.
@@ -58,7 +57,7 @@ services:
       - PUID=1000 # User ID
       - PROJECT_ID=430517 # The ID of your Curseforge project
       - PGID=1000 # Group ID
-      - GITHUB_TOKEN # (Optional) Required if you want the cache of the bot to be synched to a github repository. Create an github access token with full 
+      - GITHUB_TOKEN= # (Optional) Required if you want the cache of the bot to be synched to a github repository. Create an github access token with full 
       - GITHUB_REPO=CurseforgeBotCache # (Optional) If using GITHUB_TOKEN this will be the name of the repo where the bot will store the cache
       - FILE_LINK=curse # direct-link to file or curseforge-link on project page or nolink.
       - DISCORD_CHANNEL_ID=000000000 # The ID of the channel you want the bot to post in
@@ -79,59 +78,13 @@ docker create \
   -e PUID=1000 `# User ID` \
   -e PROJECT_ID=430517 `# The ID of your Curseforge project` \
   -e PGID=1000 `# Group ID` \
-  -e GITHUB_TOKEN `# (Optional) Required if you want the cache of the bot to be synched to a github repository. Create an github access token with full ` \
+  -e GITHUB_TOKEN=Your_GitHub_Token `# (Optional) Required if you want the cache of the bot to be synced to a github repository. Create an github access token with full ` \
   -e GITHUB_REPO=CurseforgeBotCache `# (Optional) If using GITHUB_TOKEN this will be the name of the repo where the bot will store the cache` \
   -e FILE_LINK=curse `# direct-link to file or curseforge-link on project page or nolink.` \
   -e DISCORD_CHANNEL_ID=000000000 `# The ID of the channel you want the bot to post in` \
   -e DISCORD_BOT_TOKEN=InsertHere `# Your discord bot-token` \
   -e DESCRIPTION=New File(s) Detected For CurseForge Project(s) `# This sets the text that appears as the message description in the update notification` \
-  -e CHANGELOG_FORMAT=md `# yml or md or css. Only choose one syntax. Can be very usefull if project owner/author uses discord MarkDown formatting in their changelog.` \
-  -v /host/path/to/config:/config `# Where the bot-conf will be stored` \
-  --restart unless-stopped \
-  griefed/curseforge-bot:latest
-```
-
-## Pre-built images `ijo42-latest`
-
-using docker-compose:
-
-```docker-compose.yml
-version: "2"
-services:
-  curseforge-bot:
-    image: griefed/curseforge-bot:ijo42-latest
-    container_name: curseforge-bot
-    restart: unless-stopped
-    environment:
-      - TZ=Europe/Berlin # Timezone
-      - ROLE_ID=000000000 # (Optional) The ID of the discord role mentioned when the bot makes a post
-      - PUID=1000 # User ID
-      - PROJECT_ID=430517 # The ID of your Curseforge project
-      - PGID=1000 # Group ID
-      - FILE_LINK=curse # direct-link to file or curseforge-link on project page or nolink.
-      - DISCORD_CHANNEL_ID=000000000 # The ID of the channel you want the bot to post in. Must be the Channel ID from your Webhook URL.
-      - WEBHOOK_TOKEN=InsertHere # Your discord-server webhook
-      - DESCRIPTION=New File(s) Detected For CurseForge Project(s) # This sets the text that appears as the message description in the update notification
-      - CHANGELOG_FORMAT=md # yml or md or css. Only choose one syntax. Can be very usefull if project owner/author uses discord MarkDown formatting in their changelog.
-    volumes:
-      - /host/path/to/config:/config # Where the bot-conf will be stored
-```
-
-Using CLI:
-
-```bash
-docker create \
-  --name=curseforge-bot \
-  -e TZ=Europe/Berlin `# Timezone` \
-  -e ROLE_ID=000000000 `# (Optional) The ID of the discord role mentioned when the bot makes a post` \
-  -e PUID=1000 `# User ID` \
-  -e PROJECT_ID=430517 `# The ID of your Curseforge project` \
-  -e PGID=1000 `# Group ID` \
-  -e FILE_LINK=curse `# direct-link to file or curseforge-link on project page or nolink.` \
-  -e DISCORD_CHANNEL_ID=000000000 `# The ID of the channel you want the bot to post in. Must be the Channel ID from your webhook URL.` \
-  -e WEBHOOK_TOKEN=InsertHere `# Your discord-server webhook` \
-  -e DESCRIPTION=New File(s) Detected For CurseForge Project(s) `# This sets the text that appears as the message description in the update notification` \
-  -e CHANGELOG_FORMAT=md `# yml or md or css. Only choose one syntax. Can be very usefull if project owner/author uses discord MarkDown formatting in their changelog.` \
+  -e CHANGELOG_FORMAT=md `# yml or md or css. Only choose one syntax. Can be very useful if project owner/author uses discord MarkDown formatting in their changelog.` \
   -v /host/path/to/config:/config `# Where the bot-conf will be stored` \
   --restart unless-stopped \
   griefed/curseforge-bot:latest
@@ -143,7 +96,6 @@ Configuration | Explanation
 ------------ | -------------
 [Restart policy](https://docs.docker.com/compose/compose-file/#restart) | "no", always, on-failure, unless-stopped
 config volume | Contains config files and logs.
-data volume | Contains your/the containers important data.
 TZ | Timezone
 PUID | for UserID
 PGID | for GroupID
@@ -156,7 +108,6 @@ DESCRIPTION | This sets the text that appears as the message description in the 
 CHANGELOG_FORMAT | `yml` or `md` or `css`. Only choose one syntax. Can be very usefull if project owner/author uses discord MarkDown formatting in their changelog.
 GITHUB_TOKEN | (Optional) Required if you want the cache of the bot to be synched to a github repository. Create an github access token with full "Repo" access (https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
 GITHUB_REPO | (Optional) If using GITHUB_TOKEN this will be the name of the repo where the bot will store the cache
-WEBHOOK_TOKEN | Your discord-server webhook when using ijo42-latest
 
 More information at [the Curseforge-Bot wiki](https://github.com/ErdbeerbaerLP/Curseforge-Bot/wiki).
 
@@ -172,17 +123,6 @@ ids = [
 ]
 ```
 Every new project ID need to be in "" followed by a `,` if an additional ID follows. Last ID must not have a `,` at the end.
-
-## Adding more projects to track for `ijo42-latest`
-
-If you have multiple projects in Curseforge which you want to track with this bot, you need to manually edit the bot.conf file which is created after container creation. Here's an example for multiple project IDs and how it's formatted:
-```
-ids = [
-    "430517;;DISCORD_CHANNEL_ID;;WEBHOOK_TOKEN",
-    "239197;;DISCORD_CHANNEL_ID;;WEBHOOK_TOKEN",
-    "243121;;DISCORD_CHANNEL_ID;;WEBHOOK_TOKEN"
-]
-```
 
 ## User / Group Identifiers
 
@@ -228,40 +168,6 @@ services:
 ```
 
 1. Clone the repository: `git clone https://github.com/Griefed/docker-Curseforge-Bot.git ./docker-Curseforge-Bot`
-1. Prepare docker-compose.yml file as seen above
-1. `docker-compose up -d --build curseforge-bot`
-1. ???
-1. Profit!
-
-# Building the image yourself based on ijo42's fork
-
-Use the [Dockerfile](https://github.com/Griefed/docker-Curseforge-Bot/blob/ijo42/Dockerfile) to build the image yourself, in case you want to make any changes to it
-
-docker-compose.yml:
-
-```docker-compose.yml
-version: '2'
-services:
-  curseforge-bot:
-    container_name: curseforge-bot
-    build: ./docker-Curseforge-Bot
-    restart: unless-stopped
-    volumes:
-      - ./path/to/config:/config
-    environment:
-      - TZ=Europe/Berlin # Timezone
-      - ROLE_ID=000000000
-      - PUID=1000 # User ID
-      - PROJECT_ID=
-      - PGID=1000 # Group ID
-      - FILE_LINK=
-      - DISCORD_CHANNEL_ID=
-      - WEBHOOK_TOKEN=
-      - DESCRIPTION=
-      - CHANGELOG_FORMAT=
-```
-
-1. Clone the repository: `git clone -b ijo42 https://github.com/Griefed/docker-Curseforge-Bot.git ./docker-Curseforge-Bot`
 1. Prepare docker-compose.yml file as seen above
 1. `docker-compose up -d --build curseforge-bot`
 1. ???
