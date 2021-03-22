@@ -111,7 +111,7 @@ GITHUB_REPO | (Optional) If using GITHUB_TOKEN this will be the name of the repo
 
 More information at [the Curseforge-Bot wiki](https://github.com/ErdbeerbaerLP/Curseforge-Bot/wiki).
 
-## Adding more projects to track for `latest`and `arm`
+## Adding more projects to track
 
 If you have multiple projects in Curseforge which you want to track with this bot, you need to manually edit the bot.conf file which is created after container creation. Here's an example for multiple project IDs and how it's formatted:
 ```
