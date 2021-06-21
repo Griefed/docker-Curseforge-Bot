@@ -1,4 +1,4 @@
-FROM lsiobase/alpine:3.12
+FROM lsiobase/alpine:3.14
 
 LABEL maintainer="Griefed <griefed@griefed.de>"
 
