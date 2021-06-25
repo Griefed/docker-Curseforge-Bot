@@ -23,6 +23,8 @@ A discord bot, which informs users about new files of specific mods or Curseforg
 [![Curseforge-Bot](https://i.griefed.de/images/2021/01/21/docker-Curseforge-Bot_screenshot.png)](https://github.com/ErdbeerbaerLP/Curseforge-Bot)
 [![Curseforge-Bot](https://i.griefed.de/images/2021/01/22/docker-Curseforge-Bot_screenshot2.png)](https://github.com/ErdbeerbaerLP/Curseforge-Bot)
 
+[[_TOC_]]
+
 ---
 
 Creates a Container which runs [ErdbeerbaerLP's](https://github.com/ErdbeerbaerLP) [Curseforge-Bot](https://github.com/ErdbeerbaerLP/Curseforge-Bot), with [lsiobase/alpine](https://hub.docker.com/r/lsiobase/alpine) as the base image, as seen on https://github.com/ErdbeerbaerLP/Curseforge-Bot.
